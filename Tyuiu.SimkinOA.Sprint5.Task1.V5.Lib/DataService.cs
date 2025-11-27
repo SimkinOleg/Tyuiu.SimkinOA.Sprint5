@@ -3,51 +3,36 @@ namespace Tyuiu.SimkinOA.Sprint5.Task1.V5.Lib
 {
     public class DataService : ISprint5Task1V5
     {
-        public string SaveToFileTextData(int startValue, int stopValue)
+        public class DataService : ISprint5Task1V5
         {
-            string path = $@"{Directory.GetCurrentDirectory()}\OutPutFileTask1.txt";
-
-            FileInfo fl = new FileInfo(path);
-
-            bool fileExists = fl.Exists;
-
-            if (fileExists)
+            public string SaveToFileTextData(int startValue, int stopValue)
             {
-                File.Delete(path);
-            }
-
-            double y;
-            string strY;
-            for (int x = startValue; x <= stopValue; x++)
-            {
-                if (x * 2 - 0.5 == 0)
+                string path = Path.Combine(Path.GetTempPath(), "OutPutFileTask1.txt");
+                FileInfo fileinfo = new FileInfo(path);
+                bool fileExists = fileinfo.Exists;
+                if (fileExists)
                 {
-                    y = 0;
+                    File.Delete(path);
+                }
+                double y;
+                string strY;
+                for (int x = startValue; x <= stopValue; x++)
+                {
+                    y = Math.Round(5 - 3 * x + (1 + Math.Sin(x)) / (2 * x - 0.5), 2);
                     strY = Convert.ToString(y);
                     if (x != stopValue)
                     {
                         File.AppendAllText(path, strY + Environment.NewLine);
+
                     }
                     else
                     {
                         File.AppendAllText(path, strY);
                     }
+
                 }
-                else
-                {
-                    y = Math.Round(5 - 3 * x + ((1 + Math.Sin(x)) / (2 * x - 0.5)), 2);
-                    strY = Convert.ToString(y);
-                    if (x != stopValue)
-                    {
-                        File.AppendAllText(path, strY + Environment.NewLine);
-                    }
-                    else
-                    {
-                        File.AppendAllText(path, strY);
-                    }
-                }
+                return path;
             }
-            return path;
         }
     }
 }
