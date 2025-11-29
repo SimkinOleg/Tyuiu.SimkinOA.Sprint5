@@ -20,7 +20,7 @@ namespace Tyuiu.SimkinOA.Sprint5.Task7.V27
             Console.WriteLine("* ИСХОДНЫЕ ДАННЫЕ:                                                     *");
             Console.WriteLine("************************************************************************");
 
-            string path = @"C:\DataSprint5\InPutDataFileTask7V26.txt";
+            string path = @"C:\DataSprint5\InPutDataFileTask7V27.txt";
             var result = ds.LoadDataAndSave(path);
             Console.WriteLine(result);
             Console.ReadKey();
