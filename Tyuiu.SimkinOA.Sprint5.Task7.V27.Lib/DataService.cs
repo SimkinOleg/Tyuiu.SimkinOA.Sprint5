@@ -6,18 +6,12 @@ namespace Tyuiu.SimkinOA.Sprint5.Task7.V27.Lib
     {
         public string LoadDataAndSave(string path)
         {
-
             string fileContent = File.ReadAllText(path);
-
-            string modifiedContent = Regex.Replace(fileContent, @"\s+", " ");
-
-            
+            string modifiedContent = Regex.Replace(fileContent, " ", "");
             string outputDirectory = Path.GetTempPath();
-            string outputFileName = "OutPutDataFileTask7V27.txt";
+            string outputFileName = "OutPutDataFileTask7V26.txt";
             string outputFilePath = Path.Combine(outputDirectory, outputFileName);
-
             File.WriteAllText(outputFilePath, modifiedContent);
-
             return outputFilePath;
         }
     }
